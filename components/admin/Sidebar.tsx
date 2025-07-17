@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation"; // useRouter ko import karein
 import { useTheme } from "next-themes";
 import {
   LayoutDashboard,
@@ -16,6 +16,7 @@ import {
   X,
   Sun,
   Moon,
+  LogOut, // LogOut icon ko import karein
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -37,6 +38,7 @@ interface SidebarProps {
 
 export function Sidebar({ isMobileOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
+  const router = useRouter(); // useRouter hook ko initialize karein
   const { theme, setTheme } = useTheme();
 
   const isActive = (href: string) => {
@@ -44,14 +46,21 @@ export function Sidebar({ isMobileOpen, onClose }: SidebarProps) {
     return pathname.startsWith(href);
   };
 
+  // Logout ke liye ek handler function banayein
+  const handleLogout = () => {
+    // Asli application mein, yahan aap token clear karenge aur API call karenge
+    console.log("Logging out...");
+    router.push("/"); // User ko home page par redirect karein
+  };
+
   const sidebarContent = (
     <div className="flex h-full flex-col bg-background">
       <div className="flex h-14 items-center border-b px-4 lg:px-6">
         <Link
           href="/admin/dashboard"
-          className="flex items-center gap-2 font-semibold text-foreground" // Removed hard-coded color
+          className="flex items-center gap-2 font-semibold text-foreground"
         >
-          <Bot className="h-6 w-6 text-primary" /> {/* Using primary color */}
+          <Bot className="h-6 w-6 text-primary" />
           <span className="text-lg font-bold">Admin Panel</span>
         </Link>
         <Button
@@ -87,7 +96,9 @@ export function Sidebar({ isMobileOpen, onClose }: SidebarProps) {
         </nav>
       </div>
 
-      <div className="mt-auto border-t p-4">
+      {/* --- YAHAN BADLAV KIYA GAYA HAI --- */}
+      <div className="mt-auto border-t p-4 space-y-2">
+        {/* Theme Toggle Button */}
         <Button
           variant="outline"
           className="w-full justify-start"
@@ -99,6 +110,16 @@ export function Sidebar({ isMobileOpen, onClose }: SidebarProps) {
             <Moon className="mr-2 h-4 w-4" />
           )}
           <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+        </Button>
+
+        {/* Logout Button */}
+        <Button
+          variant="ghost"
+          className="w-full justify-start text-destructive hover:bg-destructive/10 hover:text-destructive"
+          onClick={handleLogout}
+        >
+          <LogOut className="mr-2 h-4 w-4" />
+          <span>Logout</span>
         </Button>
       </div>
     </div>

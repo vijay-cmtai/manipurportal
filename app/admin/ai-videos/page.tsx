@@ -26,12 +26,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { type AiVideo } from "@/lib/types";
-
-// Import Modals
 import { UploadAiVideoModal } from "@/components/admin/ai-videos/UploadAiVideoModal";
 import { VideoDetailsModal } from "@/components/admin/ai-videos/VideoDetailsModal";
 
-// --- DUMMY DATA ---
 const aiVideosList: AiVideo[] = [
   {
     id: "vid_01",
@@ -92,18 +89,22 @@ export default function AiVideosPage() {
 
   return (
     <>
-      <div className="space-y-8">
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold tracking-tight">
+      <div className="space-y-6 md:space-y-8">
+        {/* --- BADLAV: Header stacks on mobile --- */}
+        <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
             AI Video Management
           </h1>
-          <Button onClick={() => setUploadModalOpen(true)}>
+          <Button
+            onClick={() => setUploadModalOpen(true)}
+            className="w-full md:w-auto"
+          >
             <Upload className="mr-2 h-4 w-4" /> Upload New AI Video
           </Button>
         </div>
 
         {/* Allocation Overview */}
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium">
@@ -117,9 +118,7 @@ export default function AiVideosPage() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">
-                Available for Allocation
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Available</CardTitle>
               <Check className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -128,9 +127,7 @@ export default function AiVideosPage() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">
-                Already Assigned
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Assigned</CardTitle>
               <Clock className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -144,65 +141,73 @@ export default function AiVideosPage() {
           <CardHeader>
             <CardTitle>AI Video Library</CardTitle>
             <CardDescription>
-              This is the central repository of all AI-generated videos uploaded
-              to the platform.
+              Central repository of all AI-generated videos.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Video Title</TableHead>
-                  <TableHead>Topic</TableHead>
-
-                  <TableHead>Type</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Assigned To</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {aiVideosList.map((video) => (
-                  <TableRow key={video.id}>
-                    <TableCell className="font-medium">{video.title}</TableCell>
-                    <TableCell>
-                      <Badge variant="outline">{video.topic}</Badge>
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant="secondary">{video.type}</Badge>
-                    </TableCell>
-                    <TableCell>
-                      <Badge>{video.status}</Badge>
-                    </TableCell>
-                    <TableCell>{video.assignedTo || "N/A"}</TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                          <DropdownMenuItem
-                            onSelect={() => handleOpenDetailsModal(video)}
-                          >
-                            View Details
-                          </DropdownMenuItem>
-                          <DropdownMenuItem className="text-red-500">
-                            Delete Video
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
+            {/* --- BADLAV: Table is now scrollable on small screens --- */}
+            <div className="relative w-full overflow-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Video Title</TableHead>
+                    <TableHead className="hidden md:table-cell">
+                      Topic
+                    </TableHead>
+                    <TableHead className="hidden md:table-cell">Type</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead className="hidden lg:table-cell">
+                      Assigned To
+                    </TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {aiVideosList.map((video) => (
+                    <TableRow key={video.id}>
+                      <TableCell className="font-medium">
+                        {video.title}
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        <Badge variant="outline">{video.topic}</Badge>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        <Badge variant="secondary">{video.type}</Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge>{video.status}</Badge>
+                      </TableCell>
+                      <TableCell className="hidden lg:table-cell">
+                        {video.assignedTo || "N/A"}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent>
+                            <DropdownMenuItem
+                              onSelect={() => handleOpenDetailsModal(video)}
+                            >
+                              View Details
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="text-red-500">
+                              Delete Video
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Modals */}
       <UploadAiVideoModal
         isOpen={isUploadModalOpen}
         onClose={() => setUploadModalOpen(false)}

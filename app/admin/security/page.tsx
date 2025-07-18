@@ -24,7 +24,6 @@ import { Filter, Eye } from "lucide-react";
 import { type AuditLog, type ErrorLog } from "@/lib/types";
 import { LogDetailsModal } from "@/components/admin/security/LogDetailsModal";
 
-// --- DUMMY DATA ---
 const dummyAuditLogs: AuditLog[] = [
   {
     id: "log_a1",
@@ -57,7 +56,6 @@ const dummyAuditLogs: AuditLog[] = [
     rawData: { page: "Terms", version: "2.1" },
   },
 ];
-
 const dummyErrorLogs: ErrorLog[] = [
   {
     id: "log_e1",
@@ -81,15 +79,14 @@ export default function SecurityPage() {
     title: string;
     data: object | string | null;
   }>({ isOpen: false, title: "", data: null });
-
   const openLogDetails = (title: string, data: object | string | null) => {
     setModalState({ isOpen: true, title, data });
   };
 
   return (
     <>
-      <div className="space-y-8">
-        <h1 className="text-3xl font-bold tracking-tight">
+      <div className="space-y-6 md:space-y-8">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
           Security & Logging
         </h1>
 
@@ -99,125 +96,139 @@ export default function SecurityPage() {
             <TabsTrigger value="errors">Error Logs</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="audit" className="space-y-4">
+          <TabsContent value="audit" className="mt-4 space-y-4">
             <Card>
               <CardHeader>
                 <CardTitle>Admin Action Logs</CardTitle>
                 <CardDescription>
-                  Detailed records of all administrative actions taken on the
-                  platform.
+                  Detailed records of all administrative actions.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {/* Filter Bar */}
-                <div className="flex items-center gap-2 mb-4">
+                {/* --- BADLAV: Responsive Filter Bar --- */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mb-4">
                   <Input
                     placeholder="Filter by admin, user, or action..."
-                    className="max-w-sm"
+                    className="w-full sm:max-w-sm"
                   />
-                  <Button variant="outline">
+                  <Button variant="outline" className="w-full sm:w-auto">
                     <Filter className="mr-2 h-4 w-4" /> Apply Filter
                   </Button>
                 </div>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Timestamp</TableHead>
-                      <TableHead>Admin</TableHead>
-                      <TableHead>Action</TableHead>
-                      <TableHead>Target</TableHead>
-                      <TableHead>Details</TableHead>
-                      <TableHead className="text-right">View Raw</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {dummyAuditLogs.map((log) => (
-                      <TableRow key={log.id}>
-                        <TableCell>{log.timestamp}</TableCell>
-                        <TableCell>{log.adminEmail}</TableCell>
-                        <TableCell>
-                          <Badge variant="secondary">{log.actionType}</Badge>
-                        </TableCell>
-                        <TableCell>{log.targetUser || "N/A"}</TableCell>
-                        <TableCell>{log.details}</TableCell>
-                        <TableCell className="text-right">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() =>
-                              openLogDetails(
-                                `Audit Log: ${log.id}`,
-                                log.rawData
-                              )
-                            }
-                          >
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                        </TableCell>
+                {/* --- BADLAV: Scrollable Table --- */}
+                <div className="relative w-full overflow-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="hidden lg:table-cell">
+                          Timestamp
+                        </TableHead>
+                        <TableHead>Admin</TableHead>
+                        <TableHead>Action</TableHead>
+                        <TableHead className="hidden md:table-cell">
+                          Details
+                        </TableHead>
+                        <TableHead className="text-right">Raw</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHeader>
+                    <TableBody>
+                      {dummyAuditLogs.map((log) => (
+                        <TableRow key={log.id}>
+                          <TableCell className="hidden lg:table-cell">
+                            {log.timestamp}
+                          </TableCell>
+                          <TableCell>{log.adminEmail}</TableCell>
+                          <TableCell>
+                            <Badge variant="secondary">{log.actionType}</Badge>
+                          </TableCell>
+                          <TableCell className="hidden md:table-cell">
+                            {log.details}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() =>
+                                openLogDetails(
+                                  `Audit Log: ${log.id}`,
+                                  log.rawData
+                                )
+                              }
+                            >
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
 
-          <TabsContent value="errors" className="space-y-4">
+          <TabsContent value="errors" className="mt-4 space-y-4">
             <Card>
               <CardHeader>
                 <CardTitle>System Error Logs</CardTitle>
                 <CardDescription>
-                  Comprehensive logs for developers to diagnose and fix platform
-                  issues.
+                  Logs to diagnose and fix platform issues.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center gap-2 mb-4">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mb-4">
                   <Input
                     placeholder="Filter by error code or message..."
-                    className="max-w-sm"
+                    className="w-full sm:max-w-sm"
                   />
-                  <Button variant="outline">
+                  <Button variant="outline" className="w-full sm:w-auto">
                     <Filter className="mr-2 h-4 w-4" /> Apply Filter
                   </Button>
                 </div>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Timestamp</TableHead>
-                      <TableHead>Code</TableHead>
-                      <TableHead>Error Message</TableHead>
-                      <TableHead className="text-right">View Stack</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {dummyErrorLogs.map((log) => (
-                      <TableRow key={log.id}>
-                        <TableCell>{log.timestamp}</TableCell>
-                        <TableCell>
-                          <Badge variant="destructive">{log.errorCode}</Badge>
-                        </TableCell>
-                        <TableCell className="font-mono">
-                          {log.errorMessage}
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() =>
-                              openLogDetails(
-                                `Error Log: ${log.id}`,
-                                log.stackTrace
-                              )
-                            }
-                          >
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                        </TableCell>
+                {/* --- BADLAV: Scrollable Table --- */}
+                <div className="relative w-full overflow-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="hidden sm:table-cell">
+                          Timestamp
+                        </TableHead>
+                        <TableHead>Code</TableHead>
+                        <TableHead>Error Message</TableHead>
+                        <TableHead className="text-right">Stack</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHeader>
+                    <TableBody>
+                      {dummyErrorLogs.map((log) => (
+                        <TableRow key={log.id}>
+                          <TableCell className="hidden sm:table-cell">
+                            {log.timestamp}
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant="destructive">{log.errorCode}</Badge>
+                          </TableCell>
+                          <TableCell className="font-mono">
+                            {log.errorMessage}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() =>
+                                openLogDetails(
+                                  `Error Log: ${log.id}`,
+                                  log.stackTrace
+                                )
+                              }
+                            >
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>

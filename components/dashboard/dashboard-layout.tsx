@@ -113,7 +113,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       className="w-full justify-start text-red-600 dark:text-red-400/80 hover:text-red-700 dark:hover:text-red-400 hover:bg-red-100 dark:hover:bg-red-500/10"
       asChild
     >
-      <Link href="/auth/logout">
+      <Link href="/">
         <LogOut className="h-5 w-5 mr-3" />
         Logout
       </Link>

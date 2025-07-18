@@ -29,8 +29,6 @@ import {
 } from "recharts";
 
 // --- DUMMY DATA ---
-
-// Chart ke liye data
 const earningsData = [
   { name: "Jan", earnings: 4000 },
   { name: "Feb", earnings: 3000 },
@@ -40,7 +38,6 @@ const earningsData = [
   { name: "Jun", earnings: 5500 },
 ];
 
-// **Step 1: Data ko behtar banaya gaya (title aur subtitle mein toda gaya)**
 const keyMetrics = [
   {
     icon: Users,
@@ -101,12 +98,14 @@ const criticalAlerts = [
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
-      <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+    <div className="space-y-6 md:space-y-8">
+      <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+        Dashboard
+      </h1>
 
       {/* --- ALERTS SECTION --- */}
       <div>
-        <h2 className="text-xl font-semibold tracking-tight mb-4">
+        <h2 className="text-lg md:text-xl font-semibold tracking-tight mb-4">
           Critical Alerts
         </h2>
         <div className="grid gap-4 md:grid-cols-2">
@@ -122,18 +121,18 @@ export default function DashboardPage() {
 
       {/* --- OVERVIEW / KEY METRICS SECTION --- */}
       <div>
-        <h2 className="text-xl font-semibold tracking-tight mb-4">Overview</h2>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <h2 className="text-lg md:text-xl font-semibold tracking-tight mb-4">
+          Overview
+        </h2>
+        {/* Responsive grid: 1 col on mobile, 2 on sm, 3 on lg, 6 on xl */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
           {keyMetrics.map((stat, index) => (
             <Card key={index}>
-              {/* **Step 2: Alignment a yahan theek kiya gaya** */}
               <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
-                {/* Title aur Subtitle ko handle karne ke liye ek div */}
                 <div className="space-y-1">
                   <CardTitle className="text-sm font-medium text-muted-foreground">
                     {stat.title}
                   </CardTitle>
-                  {/* Agar subtitle hai, toh hi render hoga */}
                   {stat.subtitle && (
                     <p className="text-xs text-muted-foreground">
                       {stat.subtitle}

@@ -29,7 +29,6 @@ import {
 } from "@/components/ui/table";
 import {
   MoreHorizontal,
-  ShieldCheck,
   ShieldX,
   Edit,
   KeyRound,
@@ -38,16 +37,12 @@ import {
   CheckCircle,
   XCircle,
 } from "lucide-react";
-
-
-// Modal Components (hum inko abhi banayenge)
 import { SuspendUserModal } from "@/components/admin/users/SuspendUserModal";
 import { EditUserDetailsModal } from "@/components/admin/users/EditUserDetailsModal";
 import { ResetPasswordModal } from "@/components/admin/users/ResetPasswordModal";
 import { ViewComplianceModal } from "@/components/admin/users/ViewComplianceModal";
 import { ApproveYoutubeModal } from "@/components/admin/users/ApproveYoutubeModal";
 
-// User type definition
 type User = {
   id: string;
   email: string;
@@ -55,8 +50,6 @@ type User = {
   youtube: "Verified" | "Pending" | "Declined" | "Not Linked";
   status: "Approved" | "Suspended";
 };
-
-// Modal types
 type ModalType =
   | "suspend"
   | "edit"
@@ -103,7 +96,6 @@ export default function UsersPage() {
     setSelectedUser(user);
     setModalOpen(type);
   };
-
   const handleCloseModal = () => {
     setModalOpen(null);
     setSelectedUser(null);
@@ -113,7 +105,7 @@ export default function UsersPage() {
     switch (status) {
       case "Verified":
         return (
-          <Badge variant="default">
+          <Badge>
             <CheckCircle className="mr-1 h-3 w-3" />
             {status}
           </Badge>
@@ -142,88 +134,97 @@ export default function UsersPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>User Email</TableHead>
-                <TableHead>Mobile</TableHead>
-                <TableHead>YouTube Status</TableHead>
-                <TableHead>Account Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {users.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>
-                    <Link
-                      href={`/admin/users/${user.id}`}
-                      className="font-medium text-primary hover:underline"
-                    >
-                      {user.email}
-                    </Link>
-                  </TableCell>
-                  <TableCell>{user.mobile}</TableCell>
-                  <TableCell>{getYoutubeBadge(user.youtube)}</TableCell>
-                  <TableCell>
-                    <Badge
-                      variant={
-                        user.status === "Approved" ? "default" : "destructive"
-                      }
-                    >
-                      {user.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem
-                          onSelect={() => handleOpenModal("youtube", user)}
-                        >
-                          <Youtube className="mr-2 h-4 w-4 text-red-600" />{" "}
-                          YouTube Channel
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          onSelect={() => handleOpenModal("suspend", user)}
-                        >
-                          <ShieldX className="mr-2 h-4 w-4 text-red-500" />{" "}
-                          Suspend/Activate
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          onSelect={() => handleOpenModal("compliance", user)}
-                        >
-                          <FileClock className="mr-2 h-4 w-4" /> View Compliance
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem
-                          onSelect={() => handleOpenModal("edit", user)}
-                        >
-                          <Edit className="mr-2 h-4 w-4" /> Edit Details
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          onSelect={() =>
-                            handleOpenModal("resetPassword", user)
-                          }
-                        >
-                          <KeyRound className="mr-2 h-4 w-4" /> Reset Password
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
+          {/* --- BADLAV: Scrollable Table --- */}
+          <div className="relative w-full overflow-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>User Email</TableHead>
+                  <TableHead className="hidden md:table-cell">Mobile</TableHead>
+                  <TableHead className="hidden sm:table-cell">
+                    YouTube
+                  </TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {users.map((user) => (
+                  <TableRow key={user.id}>
+                    <TableCell>
+                      <Link
+                        href={`/admin/users/${user.id}`}
+                        className="font-medium text-primary hover:underline"
+                      >
+                        {user.email}
+                      </Link>
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell">
+                      {user.mobile}
+                    </TableCell>
+                    <TableCell className="hidden sm:table-cell">
+                      {getYoutubeBadge(user.youtube)}
+                    </TableCell>
+                    <TableCell>
+                      <Badge
+                        variant={
+                          user.status === "Approved" ? "default" : "destructive"
+                        }
+                      >
+                        {user.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" className="h-8 w-8 p-0">
+                            <MoreHorizontal className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                          <DropdownMenuItem
+                            onSelect={() => handleOpenModal("youtube", user)}
+                          >
+                            <Youtube className="mr-2 h-4 w-4 text-red-600" />{" "}
+                            Social Media
+                          </DropdownMenuItem>
+                          <DropdownMenuItem
+                            onSelect={() => handleOpenModal("suspend", user)}
+                          >
+                            <ShieldX className="mr-2 h-4 w-4 text-red-500" />{" "}
+                            Suspend/Activate
+                          </DropdownMenuItem>
+                          <DropdownMenuItem
+                            onSelect={() => handleOpenModal("compliance", user)}
+                          >
+                            <FileClock className="mr-2 h-4 w-4" /> View
+                            Compliance
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem
+                            onSelect={() => handleOpenModal("edit", user)}
+                          >
+                            <Edit className="mr-2 h-4 w-4" /> Edit Details
+                          </DropdownMenuItem>
+                          <DropdownMenuItem
+                            onSelect={() =>
+                              handleOpenModal("resetPassword", user)
+                            }
+                          >
+                            <KeyRound className="mr-2 h-4 w-4" /> Reset Password
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
 
-      {/* Modals Rendering Section */}
       {selectedUser && (
         <>
           <ApproveYoutubeModal

@@ -133,7 +133,7 @@ export default function RefundPolicyPage() {
             <PolicySection icon={FileText} title="1. General Policy">
                 <p>The Universal Employment & Income Empowerment Platform (UEIEP) is built on a performance-based earning model. This means that the income you generate through daily tasks, YouTube content, and referrals is earned income. This policy outlines how we handle finances related to your account.</p>
                 <InfoBox icon={CheckCircle} title="Scope of this Policy">
-                    This policy applies to all registered Admins and covers all financial aspects of the platform, including earned income and any future paid services. We reserve the right to update this policy and will notify Admins of any significant changes.
+                    This policy applies to all registered user's and covers all financial aspects of the platform, including earned income and any future paid services. We reserve the right to update this policy and will notify const first = useRef(second)s of any significant changes.
                 </InfoBox>
             </PolicySection>
 
@@ -162,7 +162,7 @@ export default function RefundPolicyPage() {
               <p>For any questions regarding this policy or issues with your account finances, please reach out to our dedicated support team.</p>
                <ol>
                   <li>1. Email our support desk at <strong>support@ueiep.com</strong>.</li>
-                  <li>2. Include your Admin ID and a clear description of your query.</li>
+                  <li>2. Include your user's ID and a clear description of your query.</li>
                   <li>3. Our team aims to respond to all financial inquiries within 3-5 business days.</li>
                 </ol>
             </PolicySection>

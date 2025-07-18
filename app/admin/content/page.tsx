@@ -20,13 +20,10 @@ import {
 } from "@/components/ui/accordion";
 import { Save, PlusCircle, Edit, Trash2 } from "lucide-react";
 import { type FaqItem, type TutorialItem } from "@/lib/types";
-
-// Import Modals
 import { FAQModal } from "@/components/admin/content/FAQModal";
 import { TutorialModal } from "@/components/admin/content/TutorialModal";
 import { DeleteConfirmationModal } from "@/components/admin/content/DeleteConfirmationModal";
 
-// --- DUMMY DATA ---
 const dummyFaqs: FaqItem[] = [
   {
     id: "faq1",
@@ -41,7 +38,6 @@ const dummyFaqs: FaqItem[] = [
       "A small percentage of your monthly earnings is contributed back to the platform to cover operational costs.",
   },
 ];
-
 const dummyTutorials: TutorialItem[] = [
   {
     id: "tut1",
@@ -71,38 +67,37 @@ export default function ContentPage() {
 
   return (
     <>
-      <div className="space-y-8">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <h1 className="text-3xl font-bold tracking-tight">
+      <div className="space-y-6 md:space-y-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
             Content Management
           </h1>
-          <Button size="lg">
-            <Save className="mr-2 h-4 w-4" />
-            Publish All Changes
+          <Button size="lg" className="w-full md:w-auto">
+            <Save className="mr-2 h-4 w-4" /> Publish All Changes
           </Button>
         </div>
 
         <Tabs defaultValue="terms" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="terms">Terms</TabsTrigger>
-            <TabsTrigger value="privacy">Privacy Policy</TabsTrigger>
-            <TabsTrigger value="faq">FAQs</TabsTrigger>
-            <TabsTrigger value="tutorials">Tutorials</TabsTrigger>
-          </TabsList>
+          {/* --- BADLAV: Tabs list is now scrollable on mobile --- */}
+          <div className="relative w-full overflow-x-auto">
+            <TabsList>
+              <TabsTrigger value="terms">Terms</TabsTrigger>
+              <TabsTrigger value="privacy">Privacy Policy</TabsTrigger>
+              <TabsTrigger value="faq">FAQs</TabsTrigger>
+              <TabsTrigger value="tutorials">Tutorials</TabsTrigger>
+            </TabsList>
+          </div>
 
-          <TabsContent value="terms">
+          <TabsContent value="terms" className="mt-4">
             <Card>
               <CardHeader>
                 <CardTitle>Terms & Conditions</CardTitle>
-                <CardDescription>
-                  This content is shown to users during signup and in their
-                  profile.
-                </CardDescription>
+                <CardDescription>Shown to users during signup.</CardDescription>
               </CardHeader>
               <CardContent>
                 <Textarea
                   placeholder="Type your terms here..."
-                  className="min-h-[400px] text-base"
+                  className="min-h-[300px] text-base"
                 />
               </CardContent>
               <CardFooter>
@@ -110,8 +105,7 @@ export default function ContentPage() {
               </CardFooter>
             </Card>
           </TabsContent>
-
-          <TabsContent value="privacy">
+          <TabsContent value="privacy" className="mt-4">
             <Card>
               <CardHeader>
                 <CardTitle>Privacy Policy</CardTitle>
@@ -122,7 +116,7 @@ export default function ContentPage() {
               <CardContent>
                 <Textarea
                   placeholder="Type your privacy policy here..."
-                  className="min-h-[400px] text-base"
+                  className="min-h-[300px] text-base"
                 />
               </CardContent>
               <CardFooter>
@@ -131,31 +125,29 @@ export default function ContentPage() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="faq">
+          <TabsContent value="faq" className="mt-4">
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between">
+              <CardHeader className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div>
                   <CardTitle>Frequently Asked Questions</CardTitle>
-                  <CardDescription>
-                    Manage the FAQ section shown on the help page.
-                  </CardDescription>
+                  <CardDescription>Manage the FAQ section.</CardDescription>
                 </div>
                 <Button
                   variant="outline"
                   onClick={() => handleOpenModal("faq")}
+                  className="w-full md:w-auto"
                 >
-                  <PlusCircle className="mr-2 h-4 w-4" />
-                  Add FAQ
+                  <PlusCircle className="mr-2 h-4 w-4" /> Add FAQ
                 </Button>
               </CardHeader>
               <CardContent>
                 <Accordion type="single" collapsible className="w-full">
                   {dummyFaqs.map((faq) => (
                     <AccordionItem key={faq.id} value={faq.id}>
-                      <AccordionTrigger className="hover:no-underline">
-                        <div className="flex justify-between items-center w-full pr-4">
+                      <AccordionTrigger className="text-left hover:no-underline group">
+                        <div className="flex w-full items-center justify-between pr-4">
                           <span>{faq.question}</span>
-                          <div className="space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <div className="hidden group-hover:flex shrink-0 ml-4">
                             <Button
                               variant="ghost"
                               size="icon"
@@ -190,21 +182,19 @@ export default function ContentPage() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="tutorials">
+          <TabsContent value="tutorials" className="mt-4">
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between">
+              <CardHeader className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div>
                   <CardTitle>Video Tutorials</CardTitle>
-                  <CardDescription>
-                    Manage the tutorial videos available to users.
-                  </CardDescription>
+                  <CardDescription>Manage tutorial videos.</CardDescription>
                 </div>
                 <Button
                   variant="outline"
                   onClick={() => handleOpenModal("tutorial")}
+                  className="w-full md:w-auto"
                 >
-                  <PlusCircle className="mr-2 h-4 w-4" />
-                  Add Tutorial
+                  <PlusCircle className="mr-2 h-4 w-4" /> Add Tutorial
                 </Button>
               </CardHeader>
               <CardContent>
@@ -212,7 +202,7 @@ export default function ContentPage() {
                   {dummyTutorials.map((tut) => (
                     <div
                       key={tut.id}
-                      className="flex items-center justify-between rounded-lg border p-3"
+                      className="flex flex-col items-start gap-2 rounded-lg border p-3 sm:flex-row sm:items-center sm:justify-between"
                     >
                       <div>
                         <p className="font-medium">{tut.title}</p>
@@ -220,12 +210,12 @@ export default function ContentPage() {
                           href={tut.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-muted-foreground hover:underline"
+                          className="text-sm text-muted-foreground hover:underline break-all"
                         >
                           {tut.url}
                         </a>
                       </div>
-                      <div className="space-x-2">
+                      <div className="shrink-0">
                         <Button
                           variant="ghost"
                           size="icon"
@@ -239,7 +229,7 @@ export default function ContentPage() {
                           onClick={() =>
                             handleOpenModal("delete", {
                               id: tut.id,
-                              name: "tutorial video",
+                              name: "tutorial",
                             })
                           }
                         >
@@ -255,7 +245,6 @@ export default function ContentPage() {
         </Tabs>
       </div>
 
-      {/* Modals */}
       <FAQModal
         isOpen={modalState.type === "faq"}
         onClose={handleCloseModal}

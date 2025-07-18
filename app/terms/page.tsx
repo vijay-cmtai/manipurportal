@@ -294,7 +294,7 @@ export default function TermsPage() {
                           <h2>Income & Payments</h2>
                           <p>
                             Earnings are calculated based on completed tasks,
-                            YouTube revenue share, and referral commissions.
+                            Social Media revenue share, and referral commissions.
                             Withdrawals are processed via UPI. We do not
                             guarantee any specific level of income.
                           </p>

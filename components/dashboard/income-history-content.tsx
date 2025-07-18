@@ -108,7 +108,7 @@ const transactions = [
     category: "YouTube",
     amount: 1200,
     status: "Completed",
-    description: "YouTube Revenue Share - July Week 1",
+    description: "Social Media Revenue Share - July Week 1",
   },
 ];
 
@@ -186,7 +186,7 @@ export function IncomeHistoryContent() {
     // { icon: CheckCircle, title: "Assignment Earnings", value: incomeSummary.totalAssignmentEarnings, color: "text-purple-600 dark:text-purple-400" },
     {
       icon: Video,
-      title: "YouTube Earnings",
+      title: "Social Media Earnings",
       value: incomeSummary.totalYoutubeEarnings,
       color: "text-orange-600 dark:text-orange-400",
     },
@@ -276,7 +276,7 @@ export function IncomeHistoryContent() {
                   <SelectItem value="all">All</SelectItem>
                   <SelectItem value="Assignment">Assignment</SelectItem>
                   <SelectItem value="Referral">Referral</SelectItem>
-                  <SelectItem value="YouTube">YouTube</SelectItem>
+                  <SelectItem value="YouTube">Social Media</SelectItem>
                   <SelectItem value="Payout">Payout</SelectItem>
                 </SelectContent>
               </Select>

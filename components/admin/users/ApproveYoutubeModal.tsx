@@ -22,11 +22,11 @@ export function ApproveYoutubeModal({
   onClose,
 }: ApproveYoutubeModalProps) {
   const handleApprove = () => {
-    console.log(`Approving YouTube for ${user.email}`);
+    console.log(`Approving Social Media for ${user.email}`);
     onClose();
   };
   const handleDecline = () => {
-    console.log(`Declining YouTube for ${user.email}`);
+    console.log(`Declining Social Media for ${user.email}`);
     onClose();
   };
 

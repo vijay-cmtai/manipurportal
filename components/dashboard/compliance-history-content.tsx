@@ -10,12 +10,12 @@ import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 
 const complianceRecords = [
   { id: 1, date: "2024-07-14", type: "Assignment Completion", status: "Pass", details: "Daily assignments completed: 50/50. Perfect score.", actionTaken: "None", severity: "info" },
-  { id: 2, date: "2024-07-12", type: "YouTube Content Upload", status: "Warning", details: "AI Video 'Top 5 Crypto Trends' uploaded late (24 hours delay).", actionTaken: "Email reminder sent.", severity: "warning" },
+  { id: 2, date: "2024-07-12", type: "Social Media Content Upload", status: "Warning", details: "AI Video 'Top 5 Crypto Trends' uploaded late (24 hours delay).", actionTaken: "Email reminder sent.", severity: "warning" },
   { id: 3, date: "2024-07-10", type: "Referral Policy", status: "Pass", details: "No policy violations detected in referral activity.", actionTaken: "None", severity: "info" },
   { id: 4, date: "2024-07-08", type: "Assignment Completion", status: "Fail", details: "Daily assignments completed: 30/50. Below target.", actionTaken: "Reduced assignment allocation for 2 days.", severity: "error" },
   { id: 5, date: "2024-07-05", type: "Profile Verification", status: "Pass", details: "UPI details verified successfully.", actionTaken: "None", severity: "info" },
   { id: 6, date: "2024-07-01", type: "Terms & Conditions", status: "Pass", details: "Accepted latest Terms & Conditions.", actionTaken: "None", severity: "info" },
-  { id: 7, date: "2024-06-28", type: "YouTube Content Policy", status: "Warning", details: "Minor copyright claim on 'Best Gaming Setups' video. Resolved.", actionTaken: "Guidance provided on content sourcing.", severity: "warning" },
+  { id: 7, date: "2024-06-28", type: "Social Media Content Policy", status: "Warning", details: "Minor copyright claim on 'Best Gaming Setups' video. Resolved.", actionTaken: "Guidance provided on content sourcing.", severity: "warning" },
   { id: 8, date: "2024-06-20", type: "Login Security", status: "Pass", details: "Successful login from new device after OTP verification.", actionTaken: "None", severity: "info" },
   { id: 9, date: "2024-06-15", type: "Assignment Completion", status: "Fail", details: "Daily assignments completed: 20/50. Significant underperformance.", actionTaken: "Account temporarily suspended for 24 hours.", severity: "error" },
 ];
@@ -127,7 +127,7 @@ export function ComplianceHistoryContent() {
             <p>Maintaining good compliance ensures smooth operations and maximizes your earning potential.</p>
             <ul className="list-disc pl-5 text-sky-700/80 dark:text-sky-300/80">
                 <li><strong>Assignments:</strong> Aim for 100% completion daily.</li>
-                <li><strong>Content:</strong> Upload AI videos promptly and adhere to YouTube's guidelines.</li>
+                <li><strong>Content:</strong> Upload AI videos promptly and adhere to Social Media's guidelines.</li>
                 <li><strong>Referrals:</strong> Avoid fraudulent referrals or spamming.</li>
             </ul>
             <p className="pt-1">For details, see our <a href="/terms" className="underline font-semibold">Terms & Conditions</a>.</p>

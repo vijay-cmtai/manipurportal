@@ -98,7 +98,7 @@ export function TermsStep({ onNext, onBack }: TermsStepProps) {
               </ul>
               <h4>3. Income & Payments</h4>
               <p>
-                Earnings are based on task completion, YouTube revenue sharing,
+                Earnings are based on task completion, Social Media revenue sharing,
                 and referral commissions. Payments are processed via UPI. UEIEP
                 does not guarantee any specific income levels.
               </p>

@@ -131,7 +131,7 @@ export default function RefundPolicyPage() {
             </motion.div>
 
             <PolicySection icon={FileText} title="1. General Policy">
-                <p>The Universal Employment & Income Empowerment Platform (UEIEP) is built on a performance-based earning model. This means that the income you generate through daily tasks, YouTube content, and referrals is earned income. This policy outlines how we handle finances related to your account.</p>
+                <p>The Universal Employment & Income Empowerment Platform (UEIEP) is built on a performance-based earning model. This means that the income you generate through daily tasks, Social Media content, and referrals is earned income. This policy outlines how we handle finances related to your account.</p>
                 <InfoBox icon={CheckCircle} title="Scope of this Policy">
                     This policy applies to all registered user's and covers all financial aspects of the platform, including earned income and any future paid services. We reserve the right to update this policy and will notify const first = useRef(second)s of any significant changes.
                 </InfoBox>

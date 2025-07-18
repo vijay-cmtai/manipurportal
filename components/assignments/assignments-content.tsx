@@ -11,7 +11,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 const assignments = Array.from({ length: 50 }, (_, i) => ({
   id: i + 1,
-  title: `AI Tutorial Video ${i + 1}: ${["YouTube Growth Strategies", "Content Creation Tips", "Monetization Secrets", "SEO Optimization", "Thumbnail Design", "Video Editing Basics", "Audience Engagement", "Analytics Understanding"][i % 8]}`,
+  title: `AI Tutorial Video ${i + 1}: ${["Social Media Growth Strategies", "Content Creation Tips", "Monetization Secrets", "SEO Optimization", "Thumbnail Design", "Video Editing Basics", "Audience Engagement", "Analytics Understanding"][i % 8]}`,
   thumbnail: `/placeholder.svg?height=120&width=200&text=Video+${i + 1}`,
   duration: Math.random() > 0.5 ? "55s" : "10m",
   channel: `Channel ${Math.floor(i / 5) + 1}`,

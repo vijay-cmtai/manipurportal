@@ -75,7 +75,7 @@ const faqData = [
     faqs: [
       {
         q: "What are daily assignments?",
-        a: "Daily assignments involve simple social media engagement tasks, like watching and interacting with provided YouTube content. These tasks help our partners and provide you with a consistent daily income.",
+        a: "Daily assignments involve simple social media engagement tasks, like watching and interacting with provided Social Media content. These tasks help our partners and provide you with a consistent daily income.",
       },
       {
         q: "How long do assignments take to complete?",
@@ -92,7 +92,7 @@ const faqData = [
     ],
   },
   {
-    category: "AI Videos & YouTube",
+    category: "AI Videos & Social Media",
     icon: Clapperboard,
     faqs: [
       {

@@ -110,7 +110,7 @@ export function DashboardContent() {
           <CardContent className="space-y-4">
             <div className="space-y-3 text-gray-800 dark:text-slate-300">
               <div className="flex justify-between items-center"><span className="text-sm text-gray-600 dark:text-slate-400">Assignment Earnings</span><span className="font-semibold">₹8,200</span></div>
-              <div className="flex justify-between items-center"><span className="text-sm text-gray-600 dark:text-slate-400">YouTube Income</span><span className="font-semibold">₹2,850</span></div>
+              <div className="flex justify-between items-center"><span className="text-sm text-gray-600 dark:text-slate-400">Social Media Income</span><span className="font-semibold">₹2,850</span></div>
               <div className="flex justify-between items-center"><span className="text-sm text-gray-600 dark:text-slate-400">Referral Commissions</span><span className="font-semibold">₹1,400</span></div>
               <div className="border-t border-gray-200 dark:border-slate-800 pt-3"><div className="flex justify-between items-center"><span className="font-medium text-gray-900 dark:text-white">Total Balance</span><span className="text-xl font-bold text-primary dark:text-teal-400">₹12,450</span></div></div>
             </div>

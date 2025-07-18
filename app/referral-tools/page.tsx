@@ -25,7 +25,7 @@ Dear [Friend's Name],
 
 I wanted to share an incredible opportunity with you: the Universal Employment & Income Empowerment Platform (UEIEP). It's a revolutionary platform where you can earn income through AI-generated content creation, daily assignments, and a multi-level referral program.
 
-It's completely free to join, and I've personally seen great results. You can earn by simply watching videos, creating AI-powered YouTube content, and building your network.
+It's completely free to join, and I've personally seen great results. You can earn by simply watching videos, creating AI-powered Social Media content, and building your network.
 
 Here's my personal referral link to get started:
 ${referralData.referralLink}
@@ -68,10 +68,10 @@ const videoCreatives = [
     id: 1,
     title: "Quick Start Guide (Short)",
     thumbnail: "/placeholder.svg?height=150&width=250&text=Video+1",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder YouTube embed
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder Social Media embed
     caption:
       "🚀 Start earning today with UEIEP! Daily assignments, AI videos, and referral income. Join free! #UEIEP #EarnOnline",
-    platforms: ["YouTube Shorts", "Instagram Reels"],
+    platforms: ["Social Media Shorts", "Instagram Reels"],
   },
   {
     id: 2,
@@ -80,7 +80,7 @@ const videoCreatives = [
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     caption:
       "💰 Discover how UEIEP empowers your income. Multiple streams, secure payments, and a thriving community. #DigitalIncome #FinancialFreedom",
-    platforms: ["YouTube", "Facebook"],
+    platforms: ["Social Media", "Facebook"],
   },
   {
     id: 3,
@@ -89,7 +89,7 @@ const videoCreatives = [
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     caption:
       "🤝 Build your network and earn passive income with UEIEP's 5-level referral system. Learn how! #ReferralMarketing #PassiveIncome",
-    platforms: ["YouTube", "Telegram"],
+    platforms: ["Social Media", "Telegram"],
   },
 ]
 
@@ -337,9 +337,9 @@ export default function ReferralToolsPage() {
                               key={index}
                               className="text-xs bg-gray-100 text-gray-800 rounded-full px-2 py-1 flex items-center"
                             >
-                              {platform === "YouTube Shorts" && <Youtube className="mr-1 h-3 w-3" />}
+                              {platform === "Social Media Shorts" && <Youtube className="mr-1 h-3 w-3" />}
                               {platform === "Instagram Reels" && <Instagram className="mr-1 h-3 w-3" />}
-                              {platform === "YouTube" && <Youtube className="mr-1 h-3 w-3" />}
+                              {platform === "Social Media" && <Youtube className="mr-1 h-3 w-3" />}
                               {platform === "Facebook" && <Facebook className="mr-1 h-3 w-3" />}
                               {platform === "Telegram" && <Send className="mr-1 h-3 w-3" />}
                               {platform}

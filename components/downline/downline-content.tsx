@@ -478,10 +478,10 @@ export function DownlineContent() {
       <Card className="bg-white dark:bg-slate-900 border-gray-200 dark:border-slate-800">
         <CardHeader>
           <CardTitle className="text-gray-900 dark:text-slate-100">
-            YouTube Income Verification
+            Social Media Income Verification
           </CardTitle>
           <CardDescription className="text-gray-600 dark:text-slate-400">
-            Upload your YouTube Analytics screenshot to verify channel income
+            Upload your Social Media Analytics screenshot to verify channel income
             and unlock bonuses.
           </CardDescription>
         </CardHeader>

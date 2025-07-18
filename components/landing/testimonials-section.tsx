@@ -11,7 +11,7 @@ const testimonials = [
     avatar: "/images/home/testimonial1.jpg",
   },
   {
-    quote: "I had zero experience with YouTube. The AI video tool and the guided setup process made it incredibly easy to get started. I saw my first YouTube earnings in just two months!",
+    quote: "I had zero experience with Social Media. The AI video tool and the guided setup process made it incredibly easy to get started. I saw my first Social Media earnings in just two months!",
     name: "Rajesh Kumar",
     title: "Digital Creator, Delhi",
     avatar: "/images/home/testimonial1.jpg",

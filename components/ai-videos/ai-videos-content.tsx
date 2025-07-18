@@ -21,11 +21,11 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const currentVideo = {
   id: 1,
-  title: "10 Proven YouTube Growth Strategies That Actually Work in 2024",
+  title: "10 Proven Social Media Growth Strategies That Actually Work in 2024",
   description:
-    "Discover the latest YouTube growth strategies that top creators use to gain millions of subscribers. Learn about algorithm optimization, content planning, and audience engagement techniques that will skyrocket your channel growth.",
+    "Discover the latest Social Media growth strategies that top creators use to gain millions of subscribers. Learn about algorithm optimization, content planning, and audience engagement techniques that will skyrocket your channel growth.",
   thumbnail: "/placeholder.svg?height=300&width=500&text=AI+Video+Ready",
-  topic: "YouTube Growth",
+  topic: "Social Media Growth",
   channelName: "TechGrowth Pro",
   type: "Long Form",
   duration: "12:45",
@@ -57,7 +57,7 @@ const videoHistory = [
   },
   {
     id: 4,
-    title: "SEO Optimization for YouTube Videos",
+    title: "SEO Optimization for Social Media Videos",
     thumbnail: "/placeholder.svg?height=200&width=300&text=Video+4",
     topic: "SEO",
     downloadedAt: new Date(Date.now() - 259200000),

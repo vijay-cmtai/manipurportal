@@ -39,7 +39,7 @@ const helpResources = [
     description: "Step-by-step video instructions",
     items: [
       "Platform Overview",
-      "YouTube Setup",
+      "Social Media Setup",
       "Referral System",
       "Troubleshooting",
     ],

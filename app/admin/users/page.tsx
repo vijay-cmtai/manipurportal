@@ -142,7 +142,7 @@ export default function UsersPage() {
                   <TableHead>User Email</TableHead>
                   <TableHead className="hidden md:table-cell">Mobile</TableHead>
                   <TableHead className="hidden sm:table-cell">
-                    YouTube
+                    Social Media
                   </TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead className="text-right">Actions</TableHead>

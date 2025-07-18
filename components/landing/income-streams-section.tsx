@@ -17,7 +17,7 @@ const incomeSources = [
     id: "youtube",
     // === 2. ICON KO YAHAN UPDATE KAREIN: 'Check' ko 'Youtube' se badla gaya hai ===
     icon: Youtube,
-    title: "YouTube Monetization",
+    title: "Social Media Monetization",
     description:
       "Leverage our AI videos on your own channel to build a powerful, long-term revenue stream that grows with your audience.",
   },
